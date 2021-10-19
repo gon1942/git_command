@@ -1,4 +1,3 @@
-# https://stackoverflow.com/a/18739064
 #
 
 COMMIT_EDITMSG=$1
