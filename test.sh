@@ -1,4 +1,3 @@
-#
 
 COMMIT_EDITMSG=$1
 echo $COMMIT_EDITMSG
