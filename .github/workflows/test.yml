@@ -20,7 +20,7 @@ jobs:
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
           
   run-if-fail:
-    if: ${{ always() && (needs.check.result=='failure') }}
+    if: ${{ always() && (needs.check-commit-message.result=='failure') }}
     needs: [check-commit-message]
     runs-on: ubuntu-latest
     env: 
