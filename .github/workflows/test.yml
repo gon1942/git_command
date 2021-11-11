@@ -18,10 +18,10 @@ jobs:
           pattern: '(Feat|feat|Fix|fix|Design|design|Style|style|Refactor|refactor|Comment|comment|Docs|docs|Test|test|Chore|chore|Rename|rename|Remove|remove) .+$'
           flags: 'gm'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
-  
-run-if-fail:
+          
+  run-if-fail:
     if: ${{ always() && (needs.check.result=='failure') }}
-    needs: [check]
+    needs: [check-commit-message]
     runs-on: ubuntu-latest
     env: 
       PR_NUMBER: ${{ github.event.number }}
@@ -38,3 +38,4 @@ run-if-fail:
               커밋 메시지와 PR title에 다음 Commit Type 중 하나를 포함해 주세요. \n
               Feat Fix Design Style Refactor Comment Docs Test Chore Rename Remove'
             })
+ 
