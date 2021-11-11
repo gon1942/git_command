@@ -22,7 +22,7 @@ jobs:
           #pattern: '\[[^]]+\] .+$'
           pattern: '(Feat|feat|Fix|fix|Design|design|Style|style|Refactor|refactor|Comment|comment|Docs|docs|Test|test|Chore|chore|Rename|rename|Remove|remove) .+$'
           flags: 'gm'
-          error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+          error: '>>>>> Your first line has to contain a commit type like "[BUGFIX]".'
           
   run-if-fail:
     if: ${{ always() && (needs.check-commit-message.result=='failure') }}
