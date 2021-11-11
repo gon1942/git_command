@@ -14,20 +14,27 @@ jobs:
       - name: Check Commit Type
         uses: gsactions/commit-message-checker@v1
         with:
-          pattern: '\[[^]]+\] .+$'
+          #pattern: '\[[^]]+\] .+$'
+          pattern: '(Feat|feat|Fix|fix|Design|design|Style|style|Refactor|refactor|Comment|comment|Docs|docs|Test|test|Chore|chore|Rename|rename|Remove|remove) .+$'
           flags: 'gm'
           error: 'Your first line has to contain a commit type like "[BUGFIX]".'
-      - name: Check Line Length
-        uses: gsactions/commit-message-checker@v1
+  
+run-if-fail:
+    if: ${{ always() && (needs.check.result=='failure') }}
+    needs: [check]
+    runs-on: ubuntu-latest
+    env: 
+      PR_NUMBER: ${{ github.event.number }}
+    steps:
+      - uses: actions/github-script@v3
         with:
-          pattern: '^[^#].{74}'
-          error: 'The maximum line length of 74 characters is exceeded.'
-          excludeDescription: 'true' # optional: this excludes the description body of a pull request
-          excludeTitle: 'true' # optional: this excludes the title of a pull request
-          checkAllCommitMessages: 'true' # optional: this checks all commits associated with a pull request
-          accessToken: ${{ secrets.GITHUB_TOKEN }} # github access token is only required if checkAllCommitMessages is true
-      - name: Check for Resolves / Fixes
-        uses: gsactions/commit-message-checker@v1
-        with:
-          pattern: '^.+(Resolves|Fixes): \#[0-9]+$'
-          error: 'You need at least one "Resolves|Fixes: #<issue number>" line.'
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: ${{ env.PR_NUMBER }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '요청해 주신 PR이 [하모나이즈 프로젝트의 커밋 컨벤션](https://github.com/hamonikr/hamonize/blob/master/.gitmessage.txt)을 위반합니다. \n
+              커밋 메시지와 PR title에 다음 Commit Type 중 하나를 포함해 주세요. \n
+              Feat Fix Design Style Refactor Comment Docs Test Chore Rename Remove'
+            })
