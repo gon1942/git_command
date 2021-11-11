@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}          
           PERSONAL_ACCESS_TOKEN : ${{ secrets.CLA_TOKEN }}
         with: 
-          path-to-signatures: 'contributions-signatures/cla.json'
+          path-to-signatures: 'contributions-agreement/signatures/cla.json'
           # Add path to the CLA here
           path-to-cla-document: 'https://github.com/mindsdb/mindsdb_native/blob/stable/assets/contributions-agreement/individual-contributor.md'
           branch: 'master'
