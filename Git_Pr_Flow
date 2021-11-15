@@ -1,0 +1,69 @@
+# pull request 사용하기
+[참고] https://dev-youngjun.tistory.com/47
+
+#### 순서
+
+1. Fork
+2. clone, remote 설정
+3. branch 생성
+4. 수정 작업 후 add, commit, push
+5. Pull Request 생성
+6. Merge Pull Request
+7. Merge 이후 동기화 및 branch 삭제
+
+<hr>
+
+1. 프로젝트 fork 
+2. fork한 프로젝트를 local에 clone 
+3. local project에서 원격 저장소 연결
+    - git remote add upstream <remote url>
+    - 원격저장소 확인 
+        : git remote -v 
+    
+  
+    
+4. upstream repository 로부터 최신 업데이트를 가져오는 방법은 다음과 같다.
+
+(1) fetch 명령어를 통해 upstream repository 의 내용 불러오기
+```
+$ git fetch upstream
+```    
+(2) upstream repository 의 master 브랜치(혹은 원하는 브랜치) 로부터 나의 local master branch 로 merge 한다.
+```
+$ git checkout master 
+$ git merge upstream/master
+```
+(3) 이 과정까지는 local repository 에서 일어난 것이므로, push 명령을 통해 remote repository 에 반영한다
+```
+$ git push origin master
+```    
+    
+    
+    
+    
+4. 내가 작업하려는 branch 로 checkout 한다
+프로젝트를 local 에 clone 했을 때, 원격 저장소의 모든 branch 가 같이 받아지지 않는다.
+
+기본적으로는 master branch 만 받아와 진다.
+
+원격 저장소의 브랜치를 가져오려면, 아래의 명령어를 사용하면 된다.
+
+```$ git checkout -t [원격 저장소의 branch 이름]```
+이 명령어는 로컬에 동일한 이름의 branch 를 생성하면서 해당 branch 로 checkout 을 하는 명령이다.
+
+브랜치 이름을 변경하여 가져오고 싶다면, 아래의 명령을 사용한다.
+
+```$ git checkout -b [생성할 branch 이름] [원격 저장소의 branch 이름]```
+ 
+
+* 브랜치 확인 하는 명령어
+
+(1) 로컬 브랜치
+
+```$ git branch```
+(2) 원격 저장소 브랜치
+
+```$ git branch -r```
+(3) 로컬/원격 모든 브랜치
+
+```$ git branch -a    ```
