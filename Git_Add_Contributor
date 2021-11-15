@@ -1,0 +1,40 @@
+# Contribute and Community
+
+## Contributors(github-action)
+-ction 설정에 따라 Push/PR, 주기적으로 Contributor에 대해 svg 파일로 이미지를 생성해줍니다. 
+이를 README 같은 페이지에 이미지로 추가해두면 아래와 같이 README에 동적인 Contributor 를 만들 수 있습니다.
+
+
+참고] https://github.com/BobAnkh/add-contributors
+참고] https://github.com/marketplace/actions/contributors-list
+
+```
+name: Add contributors
+on:
+  schedule:
+    - cron:  '* * * * *' #분 시 일 월 요일
+  push:
+   branches:
+     - master
+
+jobs:
+  add-contributors:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: BobAnkh/add-contributors@master
+      with:
+        CONTRIBUTOR: '### Contributors'
+        COLUMN_PER_ROW: '8'
+        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        IMG_WIDTH: '100'
+        FONT_SIZE: '14'
+        PATH: '/README.md'
+        COMMIT_MESSAGE: 'docs(README): update contributors'
+        AVATAR_SHAPE: 'round'
+
+```
+
+
+<hr>
+
