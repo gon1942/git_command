@@ -1,0 +1,78 @@
+# Greeting(github-action)
+- 이건 특별한건 아니고, 그냥 이슈,PR등이 올라오면 github가 댓글을 달아줍니다.
+```
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: 'Thank you for your first issue report :D'
+        pr-message: 'Thank you for your first PR :D'
+```
+
+<hr>
+
+### 이슈 등록시 코멘트 및 라벨 추가
+
+```
+name: Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: macos-latest
+    steps:
+      - name: create comment on issue
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks ... 이슈등록이 완료되었습니다... !'
+            })
+            
+      - name: add label on issue
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['라벨이름']
+            })
+
+```
+
+
+### close issue 
+```
+name: 'Close issues'
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  questions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close Issue
+        uses: peter-evans/close-issue@v1
+        if: "${{ github.event.label.name == ':speech_balloon: Question' }}"
+        with:
+          comment: Please note this issue tracker is not a help forum. We recommend using [StackOverflow](https://stackoverflow.com/questions/tagged/jestjs) or our [discord channel](https://discord.gg/j6FKKQQrW9) for questions.
+```
