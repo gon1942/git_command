@@ -1,0 +1,65 @@
+# Git Action
+Github action은 github에서 제공하는 CI/CD를 위한 도구입니다. yaml 포맷의 config 를 이용해서 코드 빌드, 테스트부터 deploy 까지 구현하기에 따라 정말 많은 기능을 자동으로 처리할 수 있는 도구이고 github를 사용한다면 jenkins나 다른 devops 도구를 버리고 이동할 만큼 충분히 좋은 기능성을 가지고 있습니다.
+
+
+## github action에서 하나의 action이 완료됬을 때 또 다른 action을 이어서 실행할 수 있는 방법
+
+> workflow_run (other workflow file)
+
+- Github action은 보통 on keyword로 push pull 등에서 동작하도록 동작하지만, 수동 실행 등을 위해서 workflow_run을 사용하기도 합니다. 이 때 workflow_run에 이전에 수행할 workflow 이름을 명시하면 해당workflow가 처리된 이후에 이 workflow가 실행됩니다.
+
+```
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy app
+        run: ...
+```        
+- 위 케이스에선 Build 라는 이름의 workflow가 성공하면 Deploy workflow가 동작하게 됩니다. type 을 통해서 언제 수행할지 명시할 수도 있습니다.
+
+    - completed: 성공 시 수행
+    - requested: 실행 시 수행
+
+
+> needs keyword (same workflow file)
+
+- 만약 하나의 action 파일/workflow에서 이를 처리하기 위해선 needs 라는 keyword로 구현할 수 있습니다. 이 keyword는 지정한 job이 성공해야 이 job을 실행한다는 의미를 가지고 있습니다.
+
+```
+name: CI and CD
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build app
+      run: ...
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to service
+        run: ...
+```
+- 위 코드를 예시로 들면, deploy job은 needs keyword로 인해서 build job 이 성공해야만 동작하게 됩니다.
