@@ -56,7 +56,7 @@ git rebase -i HEAD~3 (최신 3개의 커밋을 하나로 정렬
 ```bash
 - git branch  (로컬)
 - git branch -r (리모트)  
-- git branch -a (로컬, 리모트)
+- git branch -a (로컬  리모트)
 ```
 브랜치 생성
 ```bash
