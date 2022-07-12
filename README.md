@@ -1,7 +1,7 @@
 
 ### badgesLine
 
-<h1 id="badge">
+<h1 id="badge"></h1>
 
 
 # git_command
