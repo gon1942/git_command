@@ -3,21 +3,26 @@ name: Release
 
 on:
   push:
-    tags:
-    - 'v*.*.*'
+    branches:
+      - "master"
 
 jobs:
-  release:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Extract release notes
-      id: extract-release-notes
-      uses: ffurrer2/extract-release-notes@v1
-    - name: Create release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh release create ${{ github.ref_name }} --draft --notes '${{ steps.extract-release-notes.outputs.release_notes }}' --title ${{ github.ref_name }} --verify-tag
+      # ...
+      - name: "Build & test"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE.txt
+            README.md
