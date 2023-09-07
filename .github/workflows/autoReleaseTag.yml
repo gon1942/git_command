@@ -1,9 +1,9 @@
-name: Release Tag
+name: github action tag release 
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   setup-build-deploy:
