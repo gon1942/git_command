@@ -16,7 +16,9 @@ addBranchNumber() {
   fi 
 }
 
+
 MERGE=$(cat $COMMIT_EDITMSG|grep -i 'merge'|wc -l)
+
 
 if [ $MERGE -eq 0 ] ; then
   addBranchNumber
