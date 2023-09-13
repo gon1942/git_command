@@ -26,6 +26,6 @@ jobs:
       - name: Commit updated Changelog
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: ${{ github.event.release.target_commitish }}
+          branch: master
           commit_message: 'docs: Update changelog'
           file_pattern: CHANGELOG.md
