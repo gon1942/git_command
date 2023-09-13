@@ -6,24 +6,13 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
-  release-application:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Github Release get Tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Github Release Draft
-        uses: release-drafter/release-drafter@v5
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          
-
-      - name: GitHub Release Update
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
