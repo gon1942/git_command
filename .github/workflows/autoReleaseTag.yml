@@ -1,4 +1,4 @@
-name: Release Github Application Version
+name: Auto Releage Draft
 on:
   push:
     branches:
@@ -14,6 +14,15 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - uses: release-drafter/release-drafter@v5
+        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
+        # with:
+        #   config-name: my-config.yml
+        #   disable-autolabeler: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
 
       - name: GitHub Release Update
         uses: ncipollo/release-action@v1
