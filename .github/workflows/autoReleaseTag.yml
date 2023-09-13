@@ -1,20 +1,20 @@
-name: github action tag release 
-
+name: Release Github Application Version
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    branches:
+      - master
+
 jobs:
   release-application:
     runs-on: ubuntu-latest
     steps:
-      - name: Github Release 최신 tag 받아오기
+      - name: Github Release get Tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: GitHub project release 업데이트
+      - name: GitHub Release Update
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
