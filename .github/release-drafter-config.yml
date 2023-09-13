@@ -23,6 +23,6 @@ version-resolver:
       - 'patch'
   default: patch
 template: |
-  ## 변경사항
+  ## Changes
 
   $CHANGES
