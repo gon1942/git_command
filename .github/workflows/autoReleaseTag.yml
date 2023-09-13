@@ -1,16 +1,21 @@
-name: Release Drafter
-
+name: Release Github Application Version
 on:
   push:
     branches:
       - master
-
 jobs:
-  update_release_draft:
+  release-application:
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - name: Github Release get Tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
         with:
-          config-name: release-drafter.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: GitHub Release Update
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
