@@ -13,6 +13,8 @@ jobs:
       with:
         hash-type: sha256
         file-name: ./hashes.txt
+    - name: 현재 디렉터리 파일 나열
+      run: ls -al
     - name: Upload Hashes to release
       uses: svenstaro/upload-release-action@v2
       with:
