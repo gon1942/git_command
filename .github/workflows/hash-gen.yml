@@ -1,8 +1,9 @@
 name: Generate sha256 hashes for release files
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
