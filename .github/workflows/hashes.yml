@@ -18,6 +18,4 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: hashes.txt
-        overwrite: true
-        asset_name: Files-SHA256-Hashes.txt
-        tag: ${{ github.ref }}
+        
