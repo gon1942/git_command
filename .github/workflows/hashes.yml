@@ -20,4 +20,7 @@ jobs:
       with:
         name: Asset Hashes
         path: hashes.txt
+        overwrite: true
+        asset_name: Files-SHA256-Hashes.txt
+        tag: ${{ github.ref }}
         
