@@ -6,6 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: List current directory
+      run: ls -la
     - name: Generate Hashes
       uses: MCJack123/ghaction-generate-release-hashes@v1
       with:
