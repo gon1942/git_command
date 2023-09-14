@@ -1,26 +1,36 @@
-name: Generate sha256 hashes for release files
+name: Generate and Add Hashes to Release Notes
+
 on:
   release:
     types: [published]
+
 jobs:
-  build:
+  update-release-notes:
     runs-on: ubuntu-latest
     steps:
-    - name: List current directory
-      run: ls -la
-    - name: Generate Hashes
-      uses: MCJack123/ghaction-generate-release-hashes@v3
-      with:
-        hash-type: sha1
-        file-name: hashes.txt
-    - name: 현재 디렉터리 파일 나열
-      run: ls -al
-    - name: Upload Hashes to release
-      uses: actions/upload-artifact@v2
-      with:
-        name: Asset Hashes
-        path: hashes.txt
-        overwrite: true
-        asset_name: Files-SHA256-Hashes.txt
-        tag: ${{ github.ref }}
-        
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Assuming that the release asset is uploaded and its name is 'your_asset.zip'
+      - name: Download release asset
+        run: wget https://github.com/gon1942/git_command/archive/refs/tags/v0.0.55.zip
+
+      # Generate SHA256 hash for the asset
+      - name: Generate SHA256 hash
+        run: sha256sum your_asset.zip > hashes.txt
+
+      # Read hash from hashes.txt
+      - name: Read hash
+        id: get_hash
+        run: echo "HASH_VALUE=$(cat hashes.txt)" >> $GITHUB_ENV
+
+      # Update release notes
+      - name: Update release notes with hash
+        uses: github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo, tag_name } = context.payload.release;
+            const release = await github.rest.repos.getReleaseByTag({ owner, repo, tag: tag_name });
+            const updated_notes = release.data.body + "\n\nSHA256 hash: " + process.env.HASH_VALUE;
+            await github.rest.repos.updateRelease({ owner, repo, release_id: release.data.id, body: updated_notes });
