@@ -17,7 +17,7 @@ jobs:
 
       # Generate SHA256 hash for the asset
       - name: Generate SHA256 hash
-        run: sha256sum your_asset.zip > hashes.txt
+        run: sha256sum v0.0.55.zip > hashes.txt
 
       # Read hash from hashes.txt
       - name: Read hash
