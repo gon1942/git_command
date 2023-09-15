@@ -22,7 +22,7 @@ jobs:
       checks: write
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5\
+      - uses: release-drafter/release-drafter@v5
         with:
           config-name : release-drafter.yml
         env:
