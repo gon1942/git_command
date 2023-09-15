@@ -27,11 +27,5 @@ jobs:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
-        
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-artifact@v3
-      with:
-        name: artifact
-        path: contributions-agreement
+
    
