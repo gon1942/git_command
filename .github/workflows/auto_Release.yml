@@ -12,7 +12,9 @@ on:
       - synchronize
 
 permissions:
-  contents: read
+    packages: write
+    contents: write
+    id-token: write 
 
 jobs:
   update_release_draft:
