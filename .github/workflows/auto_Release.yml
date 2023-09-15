@@ -27,3 +27,14 @@ jobs:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
+
+    - run: ls -R
+    
+    - name: '📦 Package windows x64'
+      run: |
+          cd ${{github.workspace}}
+          gh release upload ${{github.event.release.tag_name}} LICENSE
+      env:
+        GITHUB_TOKEN: ${{ github.TOKEN }}
+      shell: bash
+      
