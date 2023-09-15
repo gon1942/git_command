@@ -1,8 +1,111 @@
-wererqweqwd
-d
-d
-sdf
-sdf
-sdf
-sdfsdyddddddddddddddddddddddd
-ad
+
+<h1 align="center">Github Alm</h1>
+
+
+ <h4 align="center"> 
+	🚧 ALM 요소별 프로젝트 개발을 위한 Github 기능 활용 🚧
+</h4> 
+
+<hr>
+
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  
+  <a href="#형상관리">형상관리</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>&#xa0; | &#xa0;
+  <a href="#요구분석-설계">요구 분석 및 설계</a> &#xa0; | &#xa0;
+</p>
+
+<br>
+
+## Repository  About ##
+
+프로젝트 개발 라이사이클 및 ALM 요소별로 Github의 기능을 활용하는 방법을 소개.
+
+
+공개소프트웨어 연구 개발은 소프트웨어 코드를 공개하고 사용 권리를 부여하는 방식을 의미합니다.  
+
+
+공개소프트웨어 연구 개발을 수행하는 동안은 내부 개발 인력만으로 수행될  수가 있지만 공개 소프트웨어의 특성상 외부 사용자나 개발자의 참여가 발생하게되고 참여자들로부터 지식과 의견을 받아 소프트웨어의 품질을 향상시키기 위한 공개소프트웨어 연구 개발  환경 구성이 중요하다고 생각합니다. 
+
+ 공개 소프트웨어 프로젝트에  외부 기여자들과의 협업을 위한 공개소프트웨어 개발 환경 구성에 대해 알아보겠습니다. 
+
+
+
+
+## 요구분석 설계 ##
+● 공개SW 연구개발과제의 결과물이 모든 소프트웨어를 자체 개발하는 경우에는 소프트웨어 개발 프로세스의 첫 번째 단계인 요구분석은 일반적인 소프트웨어 개발과정(요구사항 도출, 요구사항 분석, 요구사항 명세)과 다르지 않다.
+
+● 하지만 많은 연구개발과제는 외부의 라이브러리 또는 컴포넌트를 활용하는 경우를 포함하고 있으며, 만약 외부의 공개SW를 포함해서 개발하거나 외부의 공개SW를 개작하여 공개하는 유형의 과제의 경우라면 공개SW 조사, 분석, 평가, 계약의 활동이 추가로 필요하다.
+
+●   라이선스 선정 및 정의
+![](https://user-images.githubusercontent.com/31919227/147047549-3d1bcc38-e1e2-49bd-a4ce-0890e717e13e.png)
+
+
+->  Github README.md & Wiki 사용법
+
+
+## 형상관리 ##
+- Feature 1: GitHub 사이트에서 'New Repository'를 클릭하여 새 레포지토리 생성
+- Feature 2: .github/workflows 디렉토리에 YAML 파일을 생성하여 CI/CD 파이프라인 설정
+- Feature 3: 레포지토리 루트에 LICENSE 파일을 생성하고 라이선스 내용을 채움
+- Feature 4: GitHub의 Release 탭에서 새 릴리스를 생성하고 필요한 문서를 첨부
+- Feature 5: 릴리스 파일에 대한 해쉬 값을 생성하고 이를 릴리스 노트에 포함
+- Feature 6: GitHub의 Projects 탭에서 새 프로젝트 보드와 마일스톤을 생성
+- Feature 7: GitHub의 Issues 탭을 활용하여 이슈를 생성하고 라벨을 붙임
+- Feature 8: .github/ISSUE_TEMPLATE 디렉토리에 이슈 템플릿 파일을 생성
+- Feature 9: 레포지토리 루트에 .gitmessage 파일을 생성하고 템플릿을 정의
+- Feature 10: .github/PULL_REQUEST_TEMPLATE 디렉토리에 PR 템플릿 파일을 생성
+- Feature 11: GitHub Settings에서 Collaborators & Teams 섹션을 활용하여 권한을 설정
+- Feature 12 레포지토리 루트에 CODEOWNERS 파일을 생성하여 리뷰어를 지정:
+
+## rocket Technologies ##
+
+The following tools were used in this project:
+
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## :white_check_mark: Requirements ##
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting ##
+
+```bash
+# Clone this project
+$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/github-alm
+
+# Access
+$ cd github-alm
+
+# Install dependencies
+$ yarn
+
+# Run the project
+$ yarn start
+
+# The server will initialize in the <http://localhost:3000>
+```
+
+## :memo: License ##
+
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+
+
+Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+
+&#xa0;
+
+
+
+<a href="#top">Back to top</a>
+
+
