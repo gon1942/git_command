@@ -1,10 +1,8 @@
 name: Changelog Updating
 
 on:
-  workflow_run:
-    workflows: ["github action tag release "]
-    types:
-      - completed
+  release:
+    types: [released]
 
 jobs:
   update:
