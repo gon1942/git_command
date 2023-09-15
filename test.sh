@@ -15,7 +15,7 @@ addBranchNumber() {
      echo $DESCRIPTION >> $COMMIT_EDITMSG
   fi 
 }
-// eeeeeeeeeeeeeeeeee
+// eeeeeeeeeeeeeeeeeeqqqqqqqqqqqqqqqq
 
 MERGE=$(cat $COMMIT_EDITMSG|grep -i 'merge'|wc -l)
 
