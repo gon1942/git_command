@@ -29,6 +29,7 @@ jobs:
         body: ${{ steps.tag_version.outputs.changelog }}
 
     - run: ls -R
+      shell: bash
     
     - name: '📦 Package windows x64'
       run: |
