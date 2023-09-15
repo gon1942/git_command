@@ -33,6 +33,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./LICENSE
           asset_name: README.md
-          content-type: text/plain
+          content-type: application/zip
