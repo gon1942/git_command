@@ -27,4 +27,10 @@ jobs:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ steps.tag_version.outputs.changelog }}
-  
+        
+    - name: Commit updated CHANGELOG
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+          branch: ${{ github.event.release.target_commitish }}
+          commit_message: 'docs(changelog): update changelog'
+          file_pattern: CHANGELOG.md
