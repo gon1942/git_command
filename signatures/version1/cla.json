@@ -1,3 +1,20 @@
 {
-   "signedContributors": []
+  "signedContributors": [
+    {
+      "name": "kcoolday",
+      "id": 145420361,
+      "comment_id": 1724891516,
+      "created_at": "2023-09-19T06:18:08Z",
+      "repoId": 139689558,
+      "pullRequestNo": 76
+    },
+    {
+      "name": "kcoolday",
+      "id": 145420361,
+      "comment_id": 1724893011,
+      "created_at": "2023-09-19T06:19:53Z",
+      "repoId": 139689558,
+      "pullRequestNo": 76
+    }
+  ]
 }
