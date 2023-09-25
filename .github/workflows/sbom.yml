@@ -1,32 +1,25 @@
-name: SBOM upload
+name: SBOM Generator
 
 on:
-  workflow_dispatch:
   push:
-    branches: ["master"]
-env:
-  DeleteManifestDirIfPresent: 'true'
-  
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+permissions: read-all
+
 jobs:
-  SBOM-upload:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: write
 
     steps:
-    - uses: actions/checkout@v3 # 수정된 부분
-    - name: Generate SBOM
-      run: |
-        curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
-        chmod +x $RUNNER_TEMP/sbom-tool
-        export DeleteManifestDirIfPresent=true 
-        $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn git_command -pv 1.0.0 -ps gon1942 -nsb https://github.com/gon1942/git_command -V Verbose
-    - uses: actions/upload-artifact@v3  # 수정된 부분
-      with:
-        name: sbom
-        path: _manifest/spdx_2.2
-    - name: SBOM upload
-      uses: advanced-security/spdx-dependency-submission-action@v0.0.1
-      with:
-        filePath: "_manifest/spdx_2.2/"
+      - uses: actions/checkout@v3
+
+      - uses: advanced-security/sbom-generator-action@v0.0.1
+        id: sbom
+        env: 
+          GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v3.1.0
+        with: 
+          path: ${{steps.sbom.outputs.fileName }}
+          name: "SBOM"
