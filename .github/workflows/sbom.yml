@@ -20,7 +20,7 @@ jobs:
       run: |
         curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
         chmod +x $RUNNER_TEMP/sbom-tool
-        $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn git_command -pv 1.0.0 -ps OwnerName -nsb https://github.com/gon1942/git_command -V Verbose
+        $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn git_command -pv 1.0.0 -ps gon1942 -nsb https://github.com/gon1942/git_command -V Verbose
     - uses: actions/upload-artifact@v3  # 수정된 부분
       with:
         name: sbom
