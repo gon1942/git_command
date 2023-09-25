@@ -25,7 +25,7 @@ jobs:
         chmod +x $RUNNER_TEMP/sbom-tool
         $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn $ -pv 1.0.0 -ps git_command
         echo "-------------------ls ------"
-        ls -al _manifest/spdx_2.2
+        ls -al $RUNNER_TEMP/_manifest/spdx_2.2
         echo "-------------------ls -2-----"
         ls -al /tmp/
 
@@ -37,4 +37,4 @@ jobs:
     - name: SBOM upload
       uses: advanced-security/spdx-dependency-submission-action@v0.0.1
       with:
-        filePath: "_manifest/spdx_2.2/manifest.spdx.json"
+        filePath: "$RUNNER_TEMP/_manifest/spdx_2.2/manifest.spdx.json"
