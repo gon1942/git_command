@@ -13,13 +13,13 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v2  # 수정된 부분
+    - uses: actions/checkout@v3 # 수정된 부분
     - name: Generate SBOM
       run: |
         curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
         chmod +x $RUNNER_TEMP/sbom-tool
         $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn git_command -pv 1.0.0 -ps OwnerName -nsb https://sbom.mycompany.com -V Verbose
-    - uses: actions/upload-artifact@v2  # 수정된 부분
+    - uses: actions/upload-artifact@v3  # 수정된 부분
       with:
         name: sbom
         path: _manifest/spdx_2.2
