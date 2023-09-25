@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: ["master"]
-
+env:
+  DeleteManifestDirIfPresent: 'true'
+  
 jobs:
   SBOM-upload:
     runs-on: ubuntu-latest
