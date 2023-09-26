@@ -29,12 +29,14 @@ jobs:
         curl -Lo ./sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
         chmod +x ./sbom-tool
         ./sbom-tool generate -b . -bc . -pn $ -pv 1.0.0 -ps git_command
-        echo "----------------2123123---ls ------"
-        ls -al $RUNNER_TEMP
+       
         echo "-------------------ls ------"
         ls -al ./*
         echo "-------------------ls 3------"
         ls -al ./_manifest/spdx_2.2/*
+
+         echo "----------------2123123---ls ------"
+        ls -al ./*
 
 
         
