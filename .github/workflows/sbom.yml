@@ -50,10 +50,3 @@ jobs:
       with:
         filePath: "./_manifest/spdx_2.2/"
           
-    - name: Commit and push SBOM
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "gon1942@gmail.com"
-        git add ${{steps.sbom.outputs.fileName }}
-        git commit -m "Add generated SBOM"
-        git push
