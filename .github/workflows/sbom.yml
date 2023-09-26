@@ -23,3 +23,11 @@ jobs:
         with: 
           path: ${{steps.sbom.outputs.fileName }}
           name: "SBOM----ld"
+          
+      - name: Commit and push SBOM
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add ${{steps.sbom.outputs.fileName }}
+          git commit -m "Add generated SBOM"
+          git push
