@@ -24,9 +24,9 @@ jobs:
       
     - name: Generate SBOM
       run: |
-        curl -Lo ./sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
-        chmod +x ./sbom-tool
-        ./sbom-tool generate -b . -bc . -pn ${{ github.repository }} -pv 1.0.0 -ps OwnerName
+        curl -Lo $RUNNER_TEMP/sbom-tool https://github.com/microsoft/sbom-tool/releases/latest/download/sbom-tool-linux-x64
+        chmod +x $RUNNER_TEMP/sbom-tool
+        $RUNNER_TEMP/sbom-tool generate -b . -bc . -pn $ -pv 1.0.0 -ps gon1942 -nsb https://sbom.mycompany.com -V Verbose
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
