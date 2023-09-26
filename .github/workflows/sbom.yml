@@ -35,8 +35,7 @@ jobs:
         ls -al ./*
         echo "-------------------ls 3------"
         ls -al ./_manifest/spdx_2.2/*
-        echo "-------------------ls -2-----"
-        ls -al /tmp/
+
 
         
     - uses: actions/upload-artifact@v3
@@ -44,7 +43,7 @@ jobs:
         name: sbom
         path: _manifest/spdx_2.2
         
-    # - name: SBOM upload
-    #   uses: advanced-security/spdx-dependency-submission-action@v0.0.1
-    #   with:
-    #     filePath: "./_manifest/spdx_2.2/manifest.spdx.json"
+    - name: SBOM upload
+      uses: advanced-security/spdx-dependency-submission-action@v0.0.1
+      with:
+        filePath: "./_manifest/spdx_2.2/manifest.spdx.json"
